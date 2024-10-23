@@ -1,13 +1,495 @@
-body {
+/* .creepster-regular {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+.App {
+  width: 100%;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f2ed;
+  overflow-x: hidden;
+}
+html {
+  scroll-behavior: smooth;
+}
+#root {
+  width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* HeaderComponent */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 30px;
+  /* background-color: #e8e8e3;
+   */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Adjust the RGBA values for your desired color and transparency */
+  backdrop-filter: blur(3px);
+  width: 60%;
+  margin: 3% auto;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  position: sticky;
+  top: 4%;
+  z-index: 1000;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: max-height 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-items.open {
+  display: flex;
+}
+
+.nav-items li {
+  margin: 0 15px;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #8f8f8a;
+
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-items a:hover {
+  /* background-color: #e8e8e3; */
+  background-color: #b2b2ad;
+
+  color: #333;
+  border-radius: 50px;
+}
+
+.navbar:hover {
+  background-color: transparent;
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  margin-bottom: 0;
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+  margin-top: 0;
+}
+
+/* About-Component */
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin: 5% auto;
+  color: #3d403c;
+}
+
+.heading h1 {
+  font-size: 6rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.bioContainer {
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.myBio {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.personalInfo p {
+  width: 80%;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.profileTitle {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  margin-top: 5%;
+}
+
+.profile img {
+  width: 55px;
+  height: 50px;
+  border-radius: 4%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info p {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.bioText h4 {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 7px;
+  margin-top: 5%;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.iconContainer .userIcon {
+  width: 17px;
+  height: 17px;
+  border: 1px solid #b8bab4;
+  border-radius: 4px;
+  background-color: #f3f2ed;
+  color: #9ea096;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  font-size: 0.8rem;
+  padding: 7px;
+}
+
+.iconContainer .iconText {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9ea096;
+  transition: color 0.3s ease;
+}
+
+.iconContainer:hover .userIcon,
+.iconContainer:hover .iconText {
+  color: black;
+}
+
+.iconContainer:hover .userIcon {
+  background-color: #b8bab4;
+  border-color: #b8bab4;
+  color: black;
+}
+
+/* infoContainer-Component */
+.infoContainer {
+  width: 70%;
+  height: 80%; /* Adjust this value to increase height */
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+  gap: 10%;
+}
+
+.infoContainer .infoPersonal {
+  background-color: #e8e8e3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  gap: 10px;
+  margin-bottom: 5%;
+}
+.infoHeading {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 8px;
+}
+.infoPersonal h2 {
+  font-family: "Creepster", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  color: #ff7940;
+}
+.infoPersonal .linkedin-icon {
+  color: #ff7940;
+  background-color: transparent;
+}
+
+.stack-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stack-title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  overflow-x: hidden;
+}
+.stack-title h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff7940;
+  font-family: "Creepster", system-ui;
+}
+
+.stack-title span {
+  background-color: #ff7940;
+  width: 0.1rem;
+  height: 2.5rem;
+  transition: all 0.3s ease;
+}
+.stackImages {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.stack-list {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.stack-item img {
+  width: 30px;
+  width: 40px; /* Slightly larger size for visibility */
+  height: auto;
+  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smoother hover transition */
+}
+.stack-item img:hover {
+  transform: translateY(-10px); /* Move the image up on hover */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+.stackItem {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+.stackItem img {
+  width: 30px;
+  width: 40px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.stack-item img {
+  transition: transform 0.3s ease; /* Add a smooth hover transition */
+}
+.stack-item img:hover {
+  transform: translateY(-10px); /* Move the image up on hover */
+}
+
+/* .photoContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePhoto {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+} */
+
+.photoContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePhoto {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.photoContainer::before {
+  content: "";
+  position: absolute;
+  width: 210px; /* Slightly bigger than the image */
+  height: 210px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6868, #c8e8c1, #3733b8, #e80a0a);
+  background-size: 400% 400%;
+  animation: glowingBorder 3s linear infinite;
+  z-index: 0;
+}
+
+@keyframes glowingBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Media-Queries */
+@media (max-width: 768px) {
+  /* Navigation styles */
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background-color: #e8e8e3;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    position: absolute;
+    top: 70px;
+    left: 40;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-items.open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-items.open li {
+    margin: 5px 0;
+  }
+
+  /* About-Container-Component-styles */
+  .aboutContainer {
+    width: 95%;
+    margin: 10%;
+  }
+
+  .heading h1 {
+    font-size: 6vw;
+  }
+
+  .myBio {
+    width: 100%;
+  }
+
+  .info p {
+    font-size: 0.8rem;
+  }
+
+  .iconContainer .userIcon {
+    padding: 8px;
+  }
+
+  /* MyInfoComponent */
+  .infoContainer {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
+
+  .stack-container {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .stack-item img {
+    width: 30px; /* Slightly smaller on smaller screens */
+  }
+  .stack-title {
+    width: 100%; /* Make it take the full width of the screen */
+    align-items: center; /* Align items to the left */
+    flex-direction: column;
+    margin-bottom: 2%;
+  }
+
+  .stack-title span {
+    width: 100%; /* Make the span line horizontal */
+    height: 0.1rem; /* Turn the height to make the line thin horizontally */
+    margin-top: 5px; /* Optional: Adjust spacing if needed */
+  }
 }
