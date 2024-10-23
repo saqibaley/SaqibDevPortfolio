@@ -19,8 +19,9 @@ const About = () => {
         <div className="myBio">
           <div className="personalInfo">
             <p>
-              One of my deepest joys comes from equipping creative people with
-              the visual tools they need to further their work.
+              Front-End Developer 🚀 | JavaScript, React | Passionate about
+              clean code and innovative solutions. Let's build something amazing
+              together!
             </p>
           </div>
           <div className="profileTitle">
